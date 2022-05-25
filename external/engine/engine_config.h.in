@@ -1,12 +1,12 @@
 #pragma once
 
 // Uncomment if building PACKAGE
-//#define _INSTALL
+// #define _INSTALL
 
 #ifndef _INSTALL
 	#cmakedefine ENGINE_SRC_DIR "@ENGINE_SRC_DIR@"
 	#define ENGINE_SHADERS_DIR ENGINE_SRC_DIR "/shaders/"
 #else
-	#define SRC_DIR ".."
+	#define ENGINE_SRC_DIR ".."
 	#define ENGINE_SHADERS_DIR ENGINE_SRC_DIR "/shaders/"
 #endif

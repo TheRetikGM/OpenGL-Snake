@@ -22,6 +22,7 @@ target_include_directories(Glad PRIVATE include)
 
 add_library(${ENGINE_NAME}
 	${engine_src_files} ${engine_include_files}
+	${CMAKE_CURRENT_BINARY_DIR}/engine_config.h
 )
 target_link_directories( ${ENGINE_NAME} PRIVATE lib )
 target_include_directories(${ENGINE_NAME}
@@ -37,7 +38,6 @@ if (MSVC)
 		debug Debug/glfw3d optimized Release/glfw3
 		debug Debug/freetyped optimized Release/freetype
 	)
-	include(CPack)
 elseif (UNIX)
     target_link_libraries(${ENGINE_NAME}
         glfw
@@ -74,3 +74,6 @@ target_include_directories(${IMGUI} PUBLIC ${IMGUI_DIR} "${IMGUI_DIR}/backends" 
 
 # Link Dear ImGui
 target_link_libraries(${ENGINE_NAME} ${IMGUI})
+
+# === Install ===
+install(DIRECTORY "${ENGINE_SRC_DIR}/shaders" DESTINATION ./)

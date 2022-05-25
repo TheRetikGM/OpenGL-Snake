@@ -6,8 +6,6 @@
 class BasicObserverSubject : public IObserverSubject
 {
 public:
-    virtual ~BasicObserverSubject() {}
-
     virtual void AddObserver(IObserver* o) {
         if (std::find(observers.begin(), observers.end(), o) == observers.end())
             observers.emplace_back(o);

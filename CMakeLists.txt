@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.13.4)
 
 project("main")
 set(CMAKE_CXX_STANDARD 17)
-
 set(CMAKE_DEBUG_POSTFIX "d")
 
 add_subdirectory(external/json-develop)
@@ -31,7 +30,11 @@ target_link_libraries(${PROJECT_NAME}
 )
 
 # Install defines
+if (MSVC)
+	include(CPack)
+endif()
 install(TARGETS "${PROJECT_NAME}" DESTINATION bin)
 install(DIRECTORY "${CMAKE_SOURCE_DIR}/assets" DESTINATION ./)
-install(DIRECTORY "${CMAKE_SOURCE_DIR}/src/shaders" DESTINATION ./)
-
+if (EXISTS "${CMAKE_SOURCE_DIR}/src/shaders")
+	install(DIRECTORY "${CMAKE_SOURCE_DIR}/src/shaders" DESTINATION ./)
+endif()
